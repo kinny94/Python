@@ -16,8 +16,9 @@ tk.update()
 class Ball:
 
 	#function for initialization
-	def __init__(self, canvas, color):
+	def __init__(self, canvas, paddle, color):
 		self.canvas = canvas
+		self.paddle = paddle
 		self.id = canvas.create_oval(10, 10, 25, 25, fill = color)
 		self.canvas.move(self.id, 245, 100)
 		start = [-3, -2, -1, 0, 1, 2, 3]
@@ -26,6 +27,16 @@ class Ball:
 		self.y = -5
 		self.canvas_height = self.canvas.winfo_height()
 		self.canvas_width = self.canvas.winfo_width()	
+		self.hit_bottom = False;
+
+	def hit_paddle(self, pos):
+		paddle_pos = self.canvas.coords(self.paddle.id)
+		#pos[2] = ball's x coordinate paddle_pos[0] =  paddle's left side
+		if pos[2] >= paddle_pos[0] and pos[0] <= paddle_pos[2]:
+			#pos[3] = bottom of the ball paddle_pos[1] = top of the paddle
+			if pos[3] >= paddle_pos[1] and pos[3] <= paddle_pos[3]:
+				return True
+			return False
 
 	#function for animation
 	def draw(self):
@@ -37,11 +48,14 @@ class Ball:
 		if pos[1] <= 0:
 			self.y = 3
 		if pos[3] >= self.canvas_height:
-			self.y = -3
+			self.hit_bottom = True
+			canvas.create_text(245, 100, text = "Game Over!!")
 		if pos[0] <= 0:
 			self.x =3 
 		if pos[2] >= self.canvas_width:
 			self.x = -3
+		if self.hit_paddle(pos) == True:
+			self.y = -3
 
 class Paddle: 
 	def __init__(self, canvas, color):
@@ -67,13 +81,14 @@ class Paddle:
 	def right(self, evt):
 		self.x = 2
 
-
-ball = Ball(canvas, 'red')
 paddle = Paddle(canvas, 'gray')
+ball = Ball(canvas, paddle, 'red')
+
 #Loop to keep on updating the canvas, to always show the ball moving
 while 1:
-	ball.draw()
-	paddle.draw()
+	if ball.hit_bottom == False:
+		ball.draw()
+		paddle.draw()
 	tk.update_idletasks()
 	tk.update()
 	time.sleep(0.01)
