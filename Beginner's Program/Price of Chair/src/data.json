@@ -1,0 +1,21 @@
+{
+  "students" : [
+    {
+      "name" : "Arjun",
+      "score" : "100",
+      "id"    : "10416575"
+    },
+
+    {
+      "name" : "Aakash",
+      "score" : "93",
+      "id"    : "10416576"
+    },
+
+    {
+      "name" : "Abhishek",
+      "score" : "99",
+      "id"    : "10416577 "
+    }
+  ]
+}
