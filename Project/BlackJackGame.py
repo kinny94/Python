@@ -56,7 +56,7 @@ class Hand:
 		else:
 			return self.value
 	
-	def draw(self.hidden):
+	def draw(self, hidden):
 		if hidden == True and playing == True:
 			#Don show first hidden card
 			starting_card = 1
