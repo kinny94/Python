@@ -1,22 +1,15 @@
+from models.post import Post
+from database import Database
 __author__ = "Arjun"
+
+Database.initialize()
 
 import pymongo
 
-uri = "mongodb://127.0.0.1:27017"
-client = pymongo.MongoClient(uri)
-database = client['fullstack']
-collection = database['students']
+post = Post("Post-1 Title", "Post-1 Content", "Post-1 Author")
+post2 = Post("Post-2 Title", "Post-2 Content", "Post-2 Author")
+post3 = Post("Post-3 Title", "Post-3 Content", "Post-3 Author")
 
-AllStudents = collection.find({})
-students_list = []
 
-for students in AllStudents:
-    if students['score'] == 99:
-        students_list.append(students['score'])
-
-#in one line
-
-students1 = [temp['score'] for temp in collection.find({}) if temp['score'] == 99]
-
-print students_list
-print students1
+print (post.content)
+print (post2.content)
