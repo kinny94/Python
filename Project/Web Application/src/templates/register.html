@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="container login-page-form">
-    <form id="login-form" action="/auth/login" method="post">
+    <form id="register-form" action="/auth/register" method="post">
         <div class="form-group">
             <label for="email">Email</label>
             <input type="text" id="email" name="email" class="form-control">
@@ -13,7 +13,7 @@
             <input type="password" id="password" name="password" class="form-control">
         </div>
 
-        <button type="submit" id="submit-button" class="btn btn-success">Log In</button>
+        <button type="submit" id="submit-button" class="btn btn-primary">Register</button>
     </form>
 </div>
 {% endblock %}
