@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container login-page-form">
+    <form id="new_post" action="/posts/new/{{ blog_id }}" method="post">
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label for="content">Content</label>
+            <input type="text" id="content" name="content" class="form-control">
+        </div>
+
+        <button type="submit" id="submit-button" class="btn btn-primary">Publish</button>
+    </form>
+</div>
+{% endblock %}
